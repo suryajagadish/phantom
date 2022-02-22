@@ -6,7 +6,7 @@ const multer = require('multer');
 
 const fileRouter = require('./routes/file.router');
 const authRouter = require('./routes/auth.router');
-const req = require('express/lib/request');
+const razorpayRouter = require('./routes/razorpay.router');
 
 const storage = multer.diskStorage({
     destination: (request, file, callback) => {
@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 
 app.use('/file', fileRouter);
 app.use('/auth', authRouter);
+app.use('/razorpay', razorpayRouter);
 
 app.post('/upload', upload.single('image'), (request, response, next) => {
     response.json({
